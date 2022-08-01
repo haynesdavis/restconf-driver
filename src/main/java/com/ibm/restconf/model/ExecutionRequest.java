@@ -31,12 +31,14 @@ public class ExecutionRequest {
     private ResourceManagerDeploymentLocation deploymentLocation;
     @ApiModelProperty(value = "Associated Topology")
     private Map<String, InternalResourceInstance> associatedTopology = new HashMap<>();
+    @ApiModelProperty(value = "TenantId")
+    private String tenantId;
 
     public ExecutionRequest() {}
 
     public ExecutionRequest(String lifecycleName, String driverFiles, Map<String, ExecutionRequestPropertyValue> systemProperties,
                             Map<String, ExecutionRequestPropertyValue> resourceProperties, Map<String, ExecutionRequestPropertyValue> requestProperties, ResourceManagerDeploymentLocation deploymentLocation,
-                            Map<String, InternalResourceInstance> associatedTopology) {
+                            Map<String, InternalResourceInstance> associatedTopology, String tenantId) {
         this.lifecycleName = lifecycleName;
         this.driverFiles = driverFiles;
         this.systemProperties = systemProperties;
@@ -44,6 +46,7 @@ public class ExecutionRequest {
         this.resourceProperties = resourceProperties;
         this.deploymentLocation = deploymentLocation;
         this.associatedTopology = associatedTopology;
+        this.tenantId = tenantId;
     }
 
     public String getLifecycleName() {
@@ -132,6 +135,14 @@ public class ExecutionRequest {
         this.deploymentLocation = deploymentLocation;
     }
 
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
     @Override
     public String toString() {
         return "ExecutionRequest{" +
@@ -142,6 +153,7 @@ public class ExecutionRequest {
                 ", requestProperties=" + LogSafeProperties.getLogSafeProperties(requestProperties) +
                 ", associatedTopology=" + associatedTopology +
                 ", deploymentLocation=" + deploymentLocation +
+                ", tenantId=" + tenantId +
                 '}';
     }
 }
